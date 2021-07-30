@@ -20,7 +20,7 @@ public class Scheduler {
 
     matchCenter.upcoming().stream()
       .forEach(g -> {
-        var delay = g.getStart().getTime() - System.currentTimeMillis();
+        var delay = (g.getStart().getTime() - 3600 * 100) - System.currentTimeMillis();
         ses.schedule( () -> bot.answerWithPing(g), delay, TimeUnit.SECONDS);
       });
 
