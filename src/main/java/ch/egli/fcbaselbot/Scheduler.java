@@ -19,17 +19,11 @@ public class Scheduler {
     ScheduledExecutorService ses = Executors.newScheduledThreadPool(1);
 
     matchCenter.upcoming().stream()
-      .map(this::createRunnable)
-      .forEach(r -> {
-        // FIXME delay = start of game - current
-        ses.schedule(r, 5, TimeUnit.SECONDS);
+      .forEach(g -> {
+        var delay = g.getStart().getTime() - System.currentTimeMillis();
+        ses.schedule( () -> bot.answerWithPing(g), delay, TimeUnit.SECONDS);
       });
 
     ses.shutdown();
-  }
-
-  public Runnable createRunnable(final Game game) {
-    // TODO maybe this could be a good entry for live feed
-    return () -> bot.answerWithPing(game);
   }
 }
