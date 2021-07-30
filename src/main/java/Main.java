@@ -9,7 +9,8 @@ public class Main {
     Dotenv dotenv = Dotenv.load();
     new Properties(
       dotenv.get("DISCORD_TOKEN"),
-      dotenv.get("CALENDAR_URL")
+      dotenv.get("CALENDAR_URL"),
+      dotenv.get("REMINDER_HOOK")
     );
     new Bot();
   }

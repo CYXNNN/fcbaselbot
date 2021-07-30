@@ -1,6 +1,9 @@
 package ch.egli.fcbaselbot;
 
 import ch.egli.util.Properties;
+import com.mrpowergamerbr.temmiewebhook.DiscordEmbed;
+import com.mrpowergamerbr.temmiewebhook.DiscordMessage;
+import com.mrpowergamerbr.temmiewebhook.TemmieWebhook;
 import discord4j.core.DiscordClient;
 import discord4j.core.GatewayDiscordClient;
 import discord4j.core.event.domain.message.MessageCreateEvent;
@@ -15,6 +18,7 @@ public class Bot {
   private final GatewayDiscordClient gateway = client.login().block();
 
   public Bot() {
+    new Scheduler(this, center);
     gateway.on(MessageCreateEvent.class).subscribe(event -> {
       final var message = event.getMessage();
 
@@ -39,17 +43,17 @@ public class Bot {
     channel.createMessage(answer).block();
   }
 
-  private void answerWithPing(Message message, Game answer) {
-    final MessageChannel channel = message.getChannel().block();
+  public void answerWithPing(Game answer) {
 
-    channel.createMessage( msg ->
-      msg.setContent("@everyone")
-        .addEmbed(spec ->
-          spec.setColor(Color.RED)
-            .setTitle(answer.title())
-            .setDescription(answer.getDescription())
-        )
-    ).block();
+    TemmieWebhook hook = new TemmieWebhook(Properties.REMINDER_HOOK);
+    DiscordEmbed de = new DiscordEmbed(answer.title(), answer.getDescription());
+    de.setColor(5);
+    DiscordMessage dm = new DiscordMessage();
+    dm.setContent("@everyone a game is about to begin");
+    dm.getEmbeds().add(de);
+
+    hook.sendMessage(dm);
+
   }
 
   private void answer(Message message, Game answer) {
