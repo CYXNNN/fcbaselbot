@@ -1,6 +1,9 @@
 package ch.egli.fcbaselbot;
 
+import ch.egli.fcbaselbot.data.PlayerCrawler;
 import ch.egli.fcbaselbot.data.TableCrawler;
+import ch.egli.fcbaselbot.model.Player;
+import ch.egli.fcbaselbot.model.Season;
 import ch.egli.util.Properties;
 import com.mrpowergamerbr.temmiewebhook.DiscordEmbed;
 import com.mrpowergamerbr.temmiewebhook.DiscordMessage;
@@ -41,6 +44,31 @@ public class Bot {
         answer(message, table);
       }
 
+      if ("!players".equals(message.getContent())) {
+        var players = new PlayerCrawler().pretty();
+        answer(message, players);
+      }
+
+      if (message.getContent().startsWith("!player ")) {
+
+        var number = Integer.valueOf(message.getContent().replace("!player ", ""));
+        var season = (Season) new PlayerCrawler().get();
+
+        var players = season.findPlayers();
+
+        var player = players.stream()
+          .filter(p -> p.getNumber() == number)
+          .findFirst()
+          .orElse(null);
+
+        if (player == null) {
+          answer(message, "De Spilo hemmo nid du Banane!");
+        } else {
+          answer(message, player);
+        }
+
+      }
+
       if ("!siuve".equals(message.getContent())) {
         answer(message, "Der Mann aus dem Wald ist da..");
       }
@@ -74,6 +102,16 @@ public class Bot {
       spec.setColor(Color.GREEN)
         .setTitle(answer.title())
         .setDescription(answer.getDescription())
+    ).block();
+  }
+
+  private void answer(Message message, Player player) {
+    final MessageChannel channel = message.getChannel().block();
+
+    channel.createEmbed( spec ->
+      spec.setColor(Color.GREEN)
+        .setTitle(player.getTitle())
+        .setDescription(player.getBody())
     ).block();
   }
 }

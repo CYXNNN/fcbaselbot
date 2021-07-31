@@ -14,6 +14,8 @@ import lombok.Setter;
 @AllArgsConstructor
 @XmlAccessorType(XmlAccessType.FIELD)
 public class Team {
+  @XmlAttribute( name = "xid")
+  private int id;
   @XmlAttribute( name = "rank")
   private int rank;
   @XmlAttribute( name = "name")
@@ -34,4 +36,8 @@ public class Team {
   private int goal_difference;
   @XmlAttribute( name = "points")
   private int points;
+
+  private Players players;
+
+
 }

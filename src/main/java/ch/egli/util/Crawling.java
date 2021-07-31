@@ -1,8 +1,10 @@
 package ch.egli.util;
 
+import ch.egli.fcbaselbot.model.Crawled;
+
 public interface Crawling {
 
-  Object get();
+  Crawled get();
   String pretty();
 
 }

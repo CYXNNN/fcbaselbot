@@ -1,42 +1,28 @@
 package ch.egli.fcbaselbot.data;
 
+import ch.egli.fcbaselbot.model.Crawled;
 import ch.egli.fcbaselbot.model.Season;
 import ch.egli.fcbaselbot.model.Team;
 import ch.egli.util.Crawling;
 import ch.egli.util.Properties;
-import java.io.IOException;
-import java.net.URL;
 import java.util.stream.Collectors;
-import javax.xml.bind.JAXBContext;
-import javax.xml.bind.JAXBException;
-import javax.xml.bind.Unmarshaller;
 
-public class TableCrawler implements Crawling {
+public class TableCrawler extends XmlCrawler implements Crawling {
+
+  private final static String URL = Properties.TABLE_URL;
 
   @Override
-  public Object get() {
-    String url = Properties.TABLE_URL;
-    Season season = new Season();
-
-    JAXBContext jaxbContext;
-    try {
-      jaxbContext = JAXBContext.newInstance(Season.class);
-      Unmarshaller jaxbUnmarshaller = jaxbContext.createUnmarshaller();
-      var stream = new URL(url).openStream();
-
-      season = (Season) jaxbUnmarshaller.unmarshal(stream);
-    } catch (JAXBException | IOException e) {
-      e.printStackTrace();
-    }
-
-    return season;
+  public Crawled get() {
+    return crawl(URL, Season.class);
   }
 
   @Override
   public String pretty() {
     var season = (Season) get();
-
-    return season.getLeague().getTeams().getTeam().stream().map(TableCrawler::toRankString).collect(Collectors.joining("\n"));
+    var teams = season.getTeams();
+    return teams.stream()
+      .map(TableCrawler::toRankString)
+      .collect(Collectors.joining("\n"));
   }
 
   private static String toRankString(Team team){

@@ -17,11 +17,11 @@ import net.fortuna.ical4j.model.property.DtStart;
 import net.fortuna.ical4j.model.property.Location;
 import net.fortuna.ical4j.model.property.Summary;
 
-public class MatchCrawler {
+public class GameCrawler {
 
   private Calendar games;
 
-  public MatchCrawler() {
+  public GameCrawler() {
 
     try {
       init();
@@ -44,7 +44,7 @@ public class MatchCrawler {
   public List<Game> toObject() {
     return this.games.getComponents().stream()
       .filter(c -> c.getName().equals("VEVENT"))
-      .map(MatchCrawler::icsToGame)
+      .map(GameCrawler::icsToGame)
       .sorted(Comparator.comparing(Game::getStart))
       .collect(Collectors.toList());
   }

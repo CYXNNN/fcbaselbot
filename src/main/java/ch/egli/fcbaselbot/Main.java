@@ -12,7 +12,8 @@ public class Main {
       dotenv.get("DISCORD_TOKEN"),
       dotenv.get("CALENDAR_URL"),
       dotenv.get("REMINDER_HOOK"),
-      dotenv.get("TABLE_URL")
+      dotenv.get("TABLE_URL"),
+      dotenv.get("PLAYER_URL")
     );
     new Bot();
   }

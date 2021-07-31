@@ -1,6 +1,6 @@
 package ch.egli.fcbaselbot;
 
-import ch.egli.fcbaselbot.data.MatchCrawler;
+import ch.egli.fcbaselbot.data.GameCrawler;
 import java.util.Date;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -14,7 +14,7 @@ public class MatchCenter {
   private List<Game> games;
 
   public MatchCenter() {
-    this.games = new MatchCrawler().toObject();
+    this.games = new GameCrawler().toObject();
   }
 
   public Game next() {
