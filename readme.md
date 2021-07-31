@@ -8,6 +8,9 @@ Not implemented yet since no matching API provider could be found
 One hour prior to games the bot will tag ``@everyone`` with details
 
 ## Commands
-``!next``
-``!last``
-``!all``
+``!next`` tells when the next game will be <br>
+``!last`` tells about the last game <br>
+``!all`` tells about all games <br>
+``!standings`` shows the current standings of the Super League <br>
+``!players`` shows every player currenty playing for FC Basel  <br>
+``!players {number}`` tells u details about the player with the given number <br>

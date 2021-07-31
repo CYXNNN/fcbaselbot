@@ -59,12 +59,23 @@ public class Player {
 
   public String getBody() {
     return "Geburtsdatum: " + dateOfBirth + "\n" +
-      "Nationalität: " + nationality + "\n" +
+      "Nationalität: " + prettyNationality() + "\n" +
       "Gespielte Spiele (SL): " + matchesPlayed + "\n" +
       "Tore (SL): " + goals + "\n" +
       "Assists (SL): " + assists + "\n" +
       "Gelbe Karten (SL): " + yellow + "\n" +
       "Rote Karten (SL): " + red + "\n" +
       "Gespielte Minuten (SL): " + minutesPlayed + "\n";
+  }
+
+  private String prettyNationality() {
+    switch (nationality) {
+      case "Switzerland":
+        return "\uD83C\uDDE8\uD83C\uDDED";
+      case "Italy":
+        return "\uD83C\uDDEE\uD83C\uDDF9";
+      default:
+        return nationality;
+    }
   }
 }
