@@ -61,11 +61,11 @@ public class Player {
     return "Geburtsdatum: " + dateOfBirth + "\n" +
       "Nationalität: " + prettyNationality() + "\n" +
       "Gespielte Spiele (SL): " + matchesPlayed + "\n" +
-      "Tore (SL): " + goals + "\n" +
+      "⚽ (SL): " + goals + "\n" +
       "Assists (SL): " + assists + "\n" +
-      "Gelbe Karten (SL): " + yellow + "\n" +
-      "Rote Karten (SL): " + red + "\n" +
-      "Gespielte Minuten (SL): " + minutesPlayed + "\n";
+      "\uD83D\uDFE8 (SL): " + yellow + "\n" +
+      "\uD83D\uDFE5 (SL): " + red + "\n" +
+      "⏱️ (SL): " + minutesPlayed + "\n";
   }
 
   private String prettyNationality() {

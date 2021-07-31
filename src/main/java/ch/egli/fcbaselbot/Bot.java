@@ -69,8 +69,9 @@ public class Bot {
 
       }
 
-      if ("!siuve".equals(message.getContent())) {
-        answer(message, "Der Mann aus dem Wald ist da..");
+      if ("???".equals(message.getContent())) {
+        var actions = "!next -> when is the next game?\n!last -> details on the last played game\n!all -> so far fixed game plan for the season\n!standings -> current standing for the Credit Suisse Super League\n!player -> which players are playing for FC Basel (you should know...)\n!player {number} -> gives u details about the player with the given number";
+        answer(message, actions);
       }
     });
 
