@@ -1,5 +1,6 @@
-package ch.egli.fcbaselbot;
+package ch.egli.fcbaselbot.data;
 
+import ch.egli.fcbaselbot.Game;
 import ch.egli.util.Properties;
 import java.io.IOException;
 import java.io.InputStream;

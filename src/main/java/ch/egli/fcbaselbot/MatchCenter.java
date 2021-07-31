@@ -1,5 +1,6 @@
 package ch.egli.fcbaselbot;
 
+import ch.egli.fcbaselbot.data.MatchCrawler;
 import java.util.Date;
 import java.util.List;
 import java.util.stream.Collectors;

@@ -1,5 +1,6 @@
 package ch.egli.fcbaselbot;
 
+import ch.egli.fcbaselbot.data.TableCrawler;
 import ch.egli.util.Properties;
 import com.mrpowergamerbr.temmiewebhook.DiscordEmbed;
 import com.mrpowergamerbr.temmiewebhook.DiscordMessage;
@@ -19,6 +20,7 @@ public class Bot {
 
   public Bot() {
     new Scheduler(this, center);
+
     gateway.on(MessageCreateEvent.class).subscribe(event -> {
       final var message = event.getMessage();
 
@@ -32,6 +34,15 @@ public class Bot {
 
       if ("!all".equals(message.getContent())) {
         answer(message, center.all());
+      }
+
+      if ("!standings".equals(message.getContent())) {
+        var table = new TableCrawler().pretty();
+        answer(message, table);
+      }
+
+      if ("!siuve".equals(message.getContent())) {
+        answer(message, "Der Mann aus dem Wald ist da..");
       }
     });
 
