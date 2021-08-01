@@ -20,8 +20,8 @@ public class Scheduler {
 
     matchCenter.upcoming().stream()
       .forEach(g -> {
-        var delay = (g.getStart().getTime() - 3600 * 1000) - System.currentTimeMillis();
-        ses.schedule( () -> bot.answerWithPing(g), delay, TimeUnit.SECONDS);
+        var delay = (g.getStart().getTime() - 1800 * 1000) - System.currentTimeMillis();
+        ses.schedule( () -> bot.answerWithPing(g), delay, TimeUnit.MILLISECONDS);
       });
 
     ses.shutdown();

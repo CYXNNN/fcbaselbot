@@ -44,6 +44,10 @@ public class Bot {
         answer(message, table);
       }
 
+      if (message.getContent().contains("siuve")) {
+        answer(message, "Der Mann aus dem Wald ist da...");
+      }
+
       if ("!players".equals(message.getContent())) {
         var players = new PlayerCrawler().pretty();
         answer(message, players);

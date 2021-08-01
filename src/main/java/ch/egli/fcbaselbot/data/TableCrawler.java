@@ -20,12 +20,34 @@ public class TableCrawler extends XmlCrawler implements Crawling {
   public String pretty() {
     var season = (Season) get();
     var teams = season.getTeams();
-    return teams.stream()
+    var res = "Rang. Team - Punkte (Spiele/Win/Draw/Loss) GD\n";
+    res += "------------------------------------------\n";
+
+    res += teams.stream()
       .map(TableCrawler::toRankString)
       .collect(Collectors.joining("\n"));
+
+    return res;
   }
 
   private static String toRankString(Team team){
-    return team.getRank() + ". " + team.getName();
+
+    var row = "";
+    var isBasel = team.getName().equals("FC Basel 1893");
+    var posGoal = team.getGoal_difference() > 0 ? "+" : "";
+
+    if(isBasel) {
+      row += "**";
+    }
+
+    row += team.getRank() + ". " + team.getName() + " - " + team.getPoints() +
+      " Punkte (" + team.getGames() + "/" + team.getWins() + "/" + team.getDraws() +
+      "/" + team.getLoss() + ") " + posGoal + team.getGoal_difference();
+
+    if(isBasel) {
+      row += "**";
+    }
+
+    return row;
   }
 }
