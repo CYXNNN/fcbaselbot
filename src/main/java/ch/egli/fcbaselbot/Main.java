@@ -13,7 +13,8 @@ public class Main {
       dotenv.get("CALENDAR_URL"),
       dotenv.get("REMINDER_HOOK"),
       dotenv.get("TABLE_URL"),
-      dotenv.get("PLAYER_URL")
+      dotenv.get("PLAYER_URL"),
+      dotenv.get("LIVE_URL")
     );
     new Bot();
   }

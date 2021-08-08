@@ -14,4 +14,5 @@ import lombok.Setter;
 @AllArgsConstructor
 public class League {
   private Teams teams;
+  private Matches matches;
 }

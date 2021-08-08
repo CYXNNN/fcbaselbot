@@ -25,7 +25,7 @@ public class PlayerCrawler extends XmlCrawler implements Crawling {
     }
 
     return basel.getPlayers().getActive().getPlayer().stream()
-      .map(p -> p.getNumber() + " " + p.getFirstname() + " " + p.getLastname())
+      .map(p -> "**" +p.getNumber() + "** " + p.getFirstname() + " " + p.getLastname())
       .collect(Collectors.joining("\n"));
   }
 }

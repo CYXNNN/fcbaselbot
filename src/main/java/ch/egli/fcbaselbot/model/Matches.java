@@ -13,8 +13,6 @@ import lombok.Setter;
 @AllArgsConstructor
 @NoArgsConstructor
 @XmlAccessorType(XmlAccessType.FIELD)
-public class Teams {
-  private List<Team> team;
-  private Home home;
-  private Guest guest;
+public class Matches {
+  List<Match> match;
 }

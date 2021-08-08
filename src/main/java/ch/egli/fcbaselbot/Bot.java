@@ -88,16 +88,30 @@ public class Bot {
   }
 
   public void answerWithPing(Game answer) {
+    answerWithPing(answer, "@everyone a game is about to begin");
+  }
+
+  public void answerWithPing(Game answer, String message) {
 
     TemmieWebhook hook = new TemmieWebhook(Properties.REMINDER_HOOK);
     DiscordEmbed de = new DiscordEmbed(answer.title(), answer.getDescription());
     de.setColor(5);
     DiscordMessage dm = new DiscordMessage();
-    dm.setContent("@everyone a game is about to begin");
+    dm.setContent(message);
     dm.getEmbeds().add(de);
 
     hook.sendMessage(dm);
+  }
 
+  public void answerWithPing(String message, String title, String desc) {
+    TemmieWebhook hook = new TemmieWebhook(Properties.REMINDER_HOOK);
+    DiscordEmbed de = new DiscordEmbed(title, desc);
+    de.setColor(5);
+    DiscordMessage dm = new DiscordMessage();
+    dm.setContent(message);
+    dm.getEmbeds().add(de);
+
+    hook.sendMessage(dm);
   }
 
   private void answer(Message message, Game answer) {

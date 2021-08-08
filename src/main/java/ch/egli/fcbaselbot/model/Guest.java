@@ -1,8 +1,9 @@
 package ch.egli.fcbaselbot.model;
 
-import java.util.List;
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
+import javax.xml.bind.annotation.XmlAttribute;
+import javax.xml.bind.annotation.XmlElement;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -10,11 +11,13 @@ import lombok.Setter;
 
 @Getter
 @Setter
-@AllArgsConstructor
 @NoArgsConstructor
+@AllArgsConstructor
 @XmlAccessorType(XmlAccessType.FIELD)
-public class Teams {
-  private List<Team> team;
-  private Home home;
-  private Guest guest;
+public class Guest{
+  @XmlAttribute( name = "name")
+  private String name;
+
+  @XmlElement(name="goals")
+  private Goals goals;
 }

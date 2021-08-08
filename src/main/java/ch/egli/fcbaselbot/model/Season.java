@@ -29,4 +29,11 @@ public class Season extends Crawled {
   public Team getBasel() {
     return getLeague().getTeams().getTeam().stream().findFirst().orElse(null);
   }
+
+  public Match getBaselCurrentGame() {
+    return getLeague().getMatches().getMatch().stream()
+      .filter(m -> m.getTeams().getHome().getName().equals("FC Basel 1893") || m.getTeams().getGuest().getName().equals("FC Basel 1893"))
+      .findFirst()
+      .orElse(null);
+  }
 }
